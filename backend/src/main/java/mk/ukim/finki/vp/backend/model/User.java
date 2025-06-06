@@ -15,8 +15,8 @@ import java.util.Collections;
 
 @Data
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Table(name="users")
 public class User implements UserDetails {
     @Id
@@ -25,6 +25,16 @@ public class User implements UserDetails {
     private String password;
     private String firstName;
     private String lastName;
+
+    public User(String username, String password, String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.username = username;
+    }
+
+    public User() {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -49,5 +59,21 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
