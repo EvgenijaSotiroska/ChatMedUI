@@ -40,6 +40,9 @@ public class WebSecurityConfig {
                         .requestMatchers("/h2/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/api/tasks").permitAll()
+                        .requestMatchers("/api/tasks/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

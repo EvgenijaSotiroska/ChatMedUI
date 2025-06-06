@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "../../axios/axios";
-import "../styles.css";
+import "../css/styles.css";
 
 const initialState = {
     username: "",

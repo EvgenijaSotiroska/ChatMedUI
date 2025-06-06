@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axiosInstance from "../../axios/axios";
-import "../styles.css";
+import "../css/styles.css";
 
 const initialState = {
     "username": "",
@@ -21,6 +21,7 @@ const LoginPage = () => {
         try {
             const response = await axiosInstance.post("/user/login", form);
             setMessage(response.data || "Login successful!");
+
         } catch (error) {
             setMessage(
                 error.response ? error.response.data : "Network error"
