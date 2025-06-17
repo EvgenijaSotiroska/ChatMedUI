@@ -60,7 +60,7 @@ const NavBar = () => {
                         src="https://img.freepik.com/premium-vector/sign-out-icon-set-exit-quit-vector-symbol-output-sign-account-logout-button-signing-off-icon_268104-14263.jpg"
                         alt="avatar" className="avatar"/>
                     <span className="settings"
-                          onClick={() => navigate(`/user/register`)}>Sign Out</span>
+                          onClick={() => navigate(`/user/login`)}>Sign Out</span>
                 </div>
             </div>
         </div>

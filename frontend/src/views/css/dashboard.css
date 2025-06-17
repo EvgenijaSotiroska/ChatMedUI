@@ -1,8 +1,8 @@
-/* Global Styles */
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: #f0f4f8;
+    background: #f7f8fa;
+    color: #333;
 }
 
 .dashboard-grid {
@@ -12,143 +12,140 @@ body {
     margin-bottom: -15px;
 }
 
+.card,
+.bottom_card,
+.bottom_divs {
+    background: #e3edf8;
+    border-radius: 16px;
+    padding: 10px;
+    color: #1976d2;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
+    width: 500px;
+    margin-bottom: 20px;
+}
 
 .card {
-    background: #a4bee3;
-    border-radius: 16px;
-    padding: 10px;
-    height:200px;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-    width: 500px;
+    height: 200px;
     margin-left: 70px;
-    margin-bottom: 20px;
 }
 
-.bottom_card{
-    background: #a4bee3;
-    border-radius: 16px;
-    padding: 10px;
-    height:230px;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-    width: 500px;
+.bottom_card {
+    height: 230px;
     margin-left: 25px;
     margin-right: 18px;
-    margin-bottom: 20px;
 }
 
-.bottom_divs{
-    background: #a4bee3;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
-    height:250px;
-    color: white;
-    margin-left: 20px;
-    border-radius: 16px;
+.bottom_divs {
+    height: 250px;
     width: 250px;
+    margin-left: 20px;
 }
 
 dl {
     font-size: 0.9rem;
 }
 
-.btn {
-    padding: 6px 22px;
-    border-radius: 80px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-    color: white;
-}
-.btn2{
+.btn,
+.btn2 {
     padding: 6px 22px;
     border-radius: 40px;
     cursor: pointer;
     font-size: 0.9rem;
-    margin-bottom: 15px;
-    color: white;
-    background-color: #0e1922;
+    color: #fff;
+    background-color: #1976d2;
+    transition: background 0.2s;
+}
+
+.btn2 {
     width: 200px;
     margin-left: 20px;
     text-align: start;
 }
+
+.btn2:hover {
+    background-color: #1252a2;
+}
+
 .default {
-    background-color: #007bff;
+    background-color: #1976d2;
     color: white;
 }
 
 .update {
-    border-color: #4bb8b0;
     background-color: transparent;
+    color: #1976d2;
+    border: 1px solid #1976d2;
 }
 
 .delete, .details {
     background-color: transparent;
-    border-color: #ec4899;
+    border: 1px solid #ec4899;
+    color: #ec4899;
 }
-
 
 .chart-container {
     width: 500px;
     height: 200px;
     background-image: url("https://canvasjs.com/wp-content/uploads/images/gallery/javascript-charts/overview/javascript-charts-graphs-index-data-label.png");
     background-size: cover;
+    border-radius: 12px;
 }
 
+.table {
+    width: 500px;
+    height: 200px;
+    background-image: url("https://www.excel-easy.com/examples/images/split/split-worksheet.png");
+    background-size: cover;
+    border-radius: 12px;
+}
+
+
 .progress-bar-container {
-    background-color: #ccc;
+    background-color: #e0e3e7;
     border-radius: 8px;
     height: 18px;
     margin-bottom: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.08);
 }
 
 .progress-bar {
     height: 100%;
+    background-color: #1976d2;
     border-radius: 8px;
 }
 
-.chart{
+.chart {
     width: 500px;
     height: 280px;
 }
 
-.number-border{
-    border: 10px solid #222225;
+.number-border {
+    border: 10px solid #e0e3e7;
     border-radius: 76px;
     padding: 28px;
     font-size: 3rem;
     margin-left: 50px;
     margin-bottom: 10px;
+    color: #1976d2;
 }
 
-.table{
-    width: 500px;
-    height: 200px;
-    background-image: url("https://www.excel-easy.com/examples/images/split/split-worksheet.png");
-    background-size: cover;
-}
-
-
-
+/* Dashboard layout */
 .dashboard {
-    font-family: sans-serif;
-    background: #e0f1f7;
+    background: #f7f8fa;
     padding: 20px;
     min-height: 100vh;
     width: 100vw;
-    color: white;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.58);
 }
 
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #ec4899, #60a5fa);
+    background: linear-gradient(to right, #1976d2, #63a4ff);
     padding: 10px;
     border-radius: 12px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .search-bar {
@@ -158,11 +155,13 @@ dl {
     border: none;
     margin-right: 20px;
     outline: none;
+    background-color: #f3f6f9;
+    color: #333;
 }
 
 .top-buttons button {
     background: transparent;
-    border-color: #ec4899;
+    border: 1px solid #fff;
     padding: 10px 15px;
     border-radius: 10px;
     margin-left: 10px;
@@ -175,18 +174,21 @@ dl {
     gap: 20px;
 }
 
-.updates-panel {
-    background: #98c6d4;
+.updates-panel,
+.task-details {
+    background: #e3edf8;
     padding: 20px;
     border-radius: 12px;
+    color: #1976d2;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.05);
+}
+
+.updates-panel {
     flex: 1;
     height: 550px;
 }
 
 .task-details {
-    background: #98c6d4;
-    padding: 20px;
-    border-radius: 12px;
     flex: 2;
 }
 
@@ -198,7 +200,7 @@ dl {
 }
 
 .check-icon {
-    background: black;
+    background: #1976d2;
     color: white;
     border-radius: 10%;
     padding: 5px;
@@ -208,10 +210,9 @@ dl {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.38);
 }
 
-.workspace-image{
+.workspace-image {
     width: 30px;
     height: 30px;
     background: url('https://cdn.mos.cms.futurecdn.net/VFLt5vHV7aCoLrLGjP9Qwm.jpg') center/cover;
@@ -226,7 +227,7 @@ dl {
 }
 
 .button-user {
-    background: linear-gradient(to bottom, #ec4899, #60a5fa);
+    background: #1976d2;
     border: none;
     border-radius: 8px;
     padding: 5px 15px;
@@ -234,14 +235,15 @@ dl {
     font-weight: bold;
 }
 
-.button-date{
+.button-date {
     padding: 5px 15px;
-    color: white;
+    color: #1976d2;
     font-weight: bold;
-    border-color: #ec4899;
+    border: 1px solid #1976d2;
     border-radius: 8px;
     background-color: transparent;
 }
+
 .attachments,
 .linked-items {
     margin-top: 30px;
@@ -253,4 +255,3 @@ dl {
     justify-content: end;
     margin-top: 20px;
 }
-

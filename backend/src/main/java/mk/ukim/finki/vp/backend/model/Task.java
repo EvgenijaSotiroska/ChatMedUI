@@ -23,7 +23,6 @@ public class Task {
     private String name;
 
     @ManyToOne
-    @JsonIgnore
     private User assignedTo;
 
     private LocalDate DueDate;
@@ -33,11 +32,9 @@ public class Task {
     private String taskPriority;
 
     @ElementCollection
-    @JsonIgnore
     private List<String> attachedFiles;
 
     @ElementCollection
-    @JsonIgnore
     private List<String> linkedItems;
 
     public User getAssignedTo() {
