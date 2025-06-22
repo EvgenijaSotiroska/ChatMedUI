@@ -44,7 +44,7 @@ const WorkspaceDashboard = () => {
                                 src="https://d36ae2cxtn9mcr.cloudfront.net/wp-content/uploads/2020/12/16024303/Humanoid.png"
                                 alt="task image" className="avatar"/>
                             <span>{task.name}</span>
-                            <Button className="btn details" onClick={() => navigate(`/task/${task.id}`)}>Details</Button>
+                            <Button className="btn details" onClick={() => navigate(`/progress`)}>Details</Button>
                             <Button className="btn update">Update</Button>
                             <Button className="btn delete" onClick={() => handleDelete(task.id)}>Delete</Button>
 

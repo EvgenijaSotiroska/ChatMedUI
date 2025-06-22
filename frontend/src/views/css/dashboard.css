@@ -8,9 +8,27 @@ body {
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    column-gap: 12px;
+    row-gap: 10px;
     padding: 16px;
-    margin-bottom: -15px;
 }
+
+
+.card {
+    background: #e3edf8;
+    border-radius: 16px;
+    padding: 24px 20px;
+    color: #1976d2;
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.1);
+    width: 100%;
+    max-width: unset;
+    min-width: unset;
+    margin: 0 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 
 .card,
 .bottom_card,
@@ -134,8 +152,10 @@ dl {
     background: #f7f8fa;
     padding: 20px;
     min-height: 100vh;
-    width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
 }
+
 
 .top-bar {
     display: flex;
