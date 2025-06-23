@@ -46,7 +46,7 @@ const ProgressOverview = () => {
                                 }}
                             />
                         </div>
-                        <button onClick={() => navigate(`/task/${task.id}`)} className="btn2" style={{ marginTop: 8 }}>View Details</button>
+                        <button className="btn2" style={{ marginTop: 8 }}>View Details</button>
                     </div>
                 ))}
             </div>

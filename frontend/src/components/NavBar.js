@@ -31,13 +31,6 @@ const NavBar = () => {
                         Task Info
                     </div>
                 </div>
-                <h3>Teams</h3>
-                <div>
-                    <div className="team">Team 1</div>
-                    <div className="team">Team 2</div>
-                    <div className="team">Team 3</div>
-                    <div className="team">Team 4</div>
-                </div>
             </div>
 
             <div className="bottom-section">
