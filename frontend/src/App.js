@@ -7,6 +7,7 @@ import InfoPage from "./views/InfoPage";
 import WorkspaceDetailsPage from "./views/WorkspaceDetailsPage";
 import TaskDetailsPage from "./views/TaskDetailsPage";
 import ProgressOverviewPage from "./views/ProgressOverviewPage";
+import StatisticsPage from "./views/StatisticsPage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/workspace/:id" element={<WorkspaceDetailsPage />} />
                 {/*<Route path="/task/:id" element={<TaskDetailsPage />} />*/}
                 <Route path="/progress" element={<ProgressOverviewPage />} />
+                <Route path="/statistics" element={<StatisticsPage />} />
             </Routes>
         </Router>
     );

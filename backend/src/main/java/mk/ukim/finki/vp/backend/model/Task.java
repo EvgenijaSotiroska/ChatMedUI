@@ -31,18 +31,9 @@ public class Task {
 
     private String taskPriority;
 
-    @ElementCollection
-    private List<String> attachedFiles;
-
-    @ElementCollection
-    private List<String> linkedItems;
 
     public User getAssignedTo() {
         return assignedTo;
-    }
-
-    public List<String> getAttachedFiles() {
-        return attachedFiles;
     }
 
     public LocalDate getDueDate() {
@@ -51,10 +42,6 @@ public class Task {
 
     public Long getId() {
         return id;
-    }
-
-    public List<String> getLinkedItems() {
-        return linkedItems;
     }
 
     public String getName() {
