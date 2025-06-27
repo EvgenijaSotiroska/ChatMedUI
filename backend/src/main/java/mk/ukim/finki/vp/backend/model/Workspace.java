@@ -29,6 +29,14 @@ public class Workspace {
     @JsonIgnore
     private List<User> users;
 
+    @ManyToMany
+    @JsonIgnore
+    private List<Question> questions;
+
+    @ManyToMany
+    @JsonIgnore
+    private List<Model> models;
+
     public String getDescription() {
         return description;
     }
@@ -47,5 +55,13 @@ public class Workspace {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public List<Model> getModels() {
+        return models;
     }
 }

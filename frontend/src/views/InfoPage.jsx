@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../axios/axios";
+import NavBar from "../components/NavBar";
+import WorkspaceCard from "../components/WorkspaceCard";
 
 const InfoPage = () => {
     const navigate = useNavigate();
@@ -21,15 +23,23 @@ const InfoPage = () => {
             style={{
                 minHeight: "100vh",
                 backgroundColor: "#f7f8fa",
-                padding: "40px 20px",
-                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-                color: "#1976d2",
+                //padding: "40px 20px",
+                 fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                 color: "#1976d2",
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                flexDirection: "row",
+                // alignItems: "center",
             }}
         >
-            <h1 style={{ fontSize: "3rem", fontWeight: "700", marginBottom: "40px" }}>
+            <NavBar></NavBar>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    marginLeft: "150px"
+                }}>
+            <h1 style={{ fontSize: "3rem", fontWeight: "700", marginBottom: "10px" }}>
                 Welcome
             </h1>
 
@@ -43,51 +53,25 @@ const InfoPage = () => {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
                         gap: "20px",
                         width: "100%",
-                        maxWidth: "1100px",
+                        maxWidth: "900px",
                         padding: "0 20px",
+                        marginBottom: "20px",
                     }}
                 >
                     {workspaces.map((ws) => (
-                        <div
+                        <WorkspaceCard
                             key={ws.id}
-                            onClick={() => navigate(`/workspace/${ws.id}`)}
-                            style={{
-                                backgroundColor: "#e3edf8",
-                                borderRadius: "16px",
-                                padding: "20px",
-                                boxShadow: "0 4px 12px rgba(25, 118, 210, 0.1)",
-                                color: "#1976d2",
-                                cursor: "pointer",
-                                transition: "transform 0.2s, box-shadow 0.2s",
-                                userSelect: "none",
-                            }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = "scale(1.03)";
-                                e.currentTarget.style.boxShadow =
-                                    "0 6px 20px rgba(25, 118, 210, 0.2)";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = "scale(1)";
-                                e.currentTarget.style.boxShadow =
-                                    "0 4px 12px rgba(25, 118, 210, 0.1)";
-                            }}
-                            role="button"
-                            tabIndex={0}
-                            onKeyDown={(e) => {
-                                if (e.key === "Enter") navigate(`/workspace/${ws.id}`);
-                            }}
-                        >
-                            <strong style={{ fontSize: "1.3rem" }}>{ws.name}</strong>
-                            <p style={{ marginTop: "8px", fontSize: "1rem", color: "#555" }}>
-                                {ws.description || "No description"}
-                            </p>
-                        </div>
+                            id={ws.id}
+                            name={ws.name}
+                            description={ws.description}
+                        />
                     ))}
                 </div>
             )}
+            </div>
         </div>
     );
 };

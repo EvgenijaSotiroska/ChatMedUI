@@ -17,7 +17,7 @@ const NavBar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const isWorkspaceInfo = location.pathname.startsWith('/workspace/');
-    const isTaskInfo = location.pathname.startsWith('/task/');
+    const isTaskInfo = location.pathname.startsWith('/info');
 
     return (
         <div className="sidebar">
@@ -28,7 +28,7 @@ const NavBar = () => {
                         Dashboard
                     </div>
                     <div className={`nav-item ${isTaskInfo ? 'active' : ''}`}>
-                        Task Info
+                        Workspaces
                     </div>
                 </div>
             </div>
