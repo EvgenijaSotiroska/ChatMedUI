@@ -4,6 +4,8 @@ import Selector from "../components/statistics_components/Selector"
 import {Box, Typography, Divider} from "@mui/material";
 import BarChartByMetric from "../components/charts/BarChartByMetric";
 import BoxPlotByMetric from "../components/charts/BoxPlotByMetric";
+import GroupedBarChart from "../components/charts/GroupedBarChart";
+import GroupedBarChartByMetricType2 from "../components/charts/GroupedBarChartByMetricType2";
 
 const EXCLUDED_KEYS = ["question_id", "model_name", "username", "comment"];
 
@@ -77,10 +79,10 @@ const StatisticsPage = () => {
                     </strong>
                 </Typography>
 
-                {/*<GroupedBarChart*/}
-                {/*    selectedField={selectedField}*/}
-                {/*    selectedMetric={groupedMetric}>*/}
-                {/*</GroupedBarChart>*/}
+                <GroupedBarChart
+                    selectedField={selectedField}
+                    selectedMetric={groupedMetric}>
+                </GroupedBarChart>
             </Box>
             <Divider/>
             <Box sx={{
@@ -112,7 +114,7 @@ const StatisticsPage = () => {
                     Average score of <strong>positive</strong> and <strong>negative</strong> metrics by model:
                 </Typography>
 
-               {/*<GroupedBarChartByMetricType2/>*/}
+               <GroupedBarChartByMetricType2/>
 
             </Box>
             <Divider/>

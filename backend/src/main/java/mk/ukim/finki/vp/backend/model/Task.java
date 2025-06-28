@@ -23,6 +23,7 @@ public class Task {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "assigned_to", referencedColumnName = "username")
     private User assignedTo;
 
     private LocalDate DueDate;
@@ -31,6 +32,13 @@ public class Task {
 
     private String taskPriority;
 
+    public Task(String name, User assignedTo, LocalDate dueDate, String ongoingTasks, String taskPriority) {
+        this.name = name;
+        this.assignedTo = assignedTo;
+        DueDate = dueDate;
+        this.ongoingTasks = ongoingTasks;
+        this.taskPriority = taskPriority;
+    }
 
     public User getAssignedTo() {
         return assignedTo;
