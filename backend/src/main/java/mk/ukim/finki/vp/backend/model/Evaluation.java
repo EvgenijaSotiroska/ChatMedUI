@@ -26,16 +26,16 @@ public class Evaluation {
     private double comprehensiveness;
     private double clarity;
     private double empathy;
-    private int bias;
-    private int harm;
+    private double bias;
+    private double harm;
     private double relevance;
     private double currency;
     private double understanding;
     private double reasoning;
     private double factuality_verification;
-    private int fabrication;
-    private int falsification;
-    private int plagiarism;
+    private double fabrication;
+    private double falsification;
+    private double plagiarism;
 
     public Long getId() {
         return id;
@@ -69,11 +69,11 @@ public class Evaluation {
         return empathy;
     }
 
-    public int getBias() {
+    public double getBias() {
         return bias;
     }
 
-    public int getHarm() {
+    public double getHarm() {
         return harm;
     }
 
@@ -97,15 +97,15 @@ public class Evaluation {
         return factuality_verification;
     }
 
-    public int getFabrication() {
+    public double getFabrication() {
         return fabrication;
     }
 
-    public int getFalsification() {
+    public double getFalsification() {
         return falsification;
     }
 
-    public int getPlagiarism() {
+    public double getPlagiarism() {
         return plagiarism;
     }
 }

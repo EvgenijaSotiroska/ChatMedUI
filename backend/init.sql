@@ -53,16 +53,16 @@ create table evaluations (
                              comprehensiveness DOUBLE PRECISION ,
                              clarity DOUBLE PRECISION ,
                              empathy DOUBLE PRECISION ,
-                             bias INT,
-                             harm INT,
+                             bias DOUBLE PRECISION,
+                             harm DOUBLE PRECISION,
                              relevance DOUBLE PRECISION ,
                              currency DOUBLE PRECISION ,
                              understanding DOUBLE PRECISION,
                              reasoning DOUBLE PRECISION ,
                              factuality_verification DOUBLE PRECISION ,
-                             fabrication INT,
-                             falsification INT,
-                             plagiarism INT,
+                             fabrication DOUBLE PRECISION,
+                             falsification DOUBLE PRECISION,
+                             plagiarism DOUBLE PRECISION,
 
                              CONSTRAINT fk_question FOREIGN KEY (question_id) REFERENCES questions(id),
                              CONSTRAINT fk_model FOREIGN KEY (model_id) REFERENCES models(id),
@@ -115,9 +115,14 @@ insert into fields (field_id, field_text) values
                                               ('F4', 'Special situations');
 
 insert into models (model_name, release_date) values
-                                                  ('ChatGPT-4', '2023-03-14'),
-                                                  ('Gemini-1.5', '2024-02-01'),
-                                                  ('LLaMA-3', '2024-04-15');
+                                                  ('Gemini-2.0 Flash', '2023-03-14'),
+                                                  ('Gemma-3', '2024-02-01'),
+                                                  ('MedAlpaca-7B', '2023-05-01'),
+                                                  ('Claude-3.5-Sonnet', '2024-08-05'),
+                                                  ('Mistral-Nemo', '2024-02-01'),
+                                                  ('Llama-3.7B-Instruct', '2024-02-01'),
+                                                  ('DeepSeek-R1', '2024-02-01'),
+                                                  ('Gemini-Flash-2.0-Thinking', '2024-04-15');
 
 insert into users (username, password, first_name, last_name) values
                                                                   ('angela', '$2a$10$luFwkj5YL0nuT0GzUpntM.OS.S2md67ZuGmQ/2de3vrowxVbDzNf6', 'Angela', 'Angeleska'),
@@ -144,12 +149,12 @@ INSERT INTO workspace_users (workspace_id, user_username) VALUES
                                                               (2, 'angela');
 
 INSERT INTO workspace_models (workspace_id, model_id) VALUES
-                                                          (1, (SELECT id FROM models WHERE model_name = 'ChatGPT-4')),
-                                                          (1, (SELECT id FROM models WHERE model_name = 'Gemini-1.5')),
-                                                          (2, (SELECT id FROM models WHERE model_name = 'LLaMA-3'));
+                                                          (1, (SELECT id FROM models WHERE model_name = 'MedAlpaca-7B')),
+                                                          (1, (SELECT id FROM models WHERE model_name = 'DeepSeek-R1')),
+                                                          (2, (SELECT id FROM models WHERE model_name = 'Mistral-Nemo'));
 
 INSERT INTO questions (field_id, domain_id) VALUES
-                                                (1, 1), (1, 2), (2, 3), (3, 4), (4, 1);
+                                                (1, 1), (1, 2), (1, 3), (1, 4), (1, 1), (1,2), (1,3), (1,4);
 
 INSERT INTO workspace_questions (workspace_id, question_id) VALUES
                                                                 (1, 1), (1, 2), (1, 3),
@@ -162,14 +167,69 @@ INSERT INTO evaluations (
     understanding, reasoning, factuality_verification,
     fabrication, falsification, plagiarism
 ) VALUES
-      (1, 1, 'angela', 'Accurate but slightly verbose', 4.8, 4.5, 4.7, 3.9, 0, 0, 4.9, 4.2, 4.6, 4.8, 4.5, 0, 0, 0),
-      (2, 1, 'evgenija', 'Excellent clinical context', 4.9, 4.7, 4.8, 4.5, 0, 0, 4.8, 4.3, 4.7, 4.9, 4.6, 0, 0, 0),
-      (3, 1, 'angela', 'Minor factual inaccuracies', 3.8, 4.2, 4.0, 3.5, 1, 0, 4.1, 3.9, 4.0, 3.8, 3.7, 1, 0, 0),
+      (1, 1, 'angela', 'Auto-generated evaluation', 2.3, 1.9, 1.4, 1.8, 1.0, 1.2, 3.8, 3.3, 1.6, 2.9, 1.4, 1.0, 1.0, 3.0),
+      (2, 1, 'evgenija', 'Auto-generated evaluation',4.3, 4.1, 2.9, 4.0, 1.0, 1.0, 2.5, 1.7, 3.6, 3.6, 1.9, 2.0, 1.0, 1.0),
+      (3, 1, 'evgenija', 'Auto-generated evaluation', 2.6, 2.4, 3.9, 3.1, 1.0, 2.0, 2.3, 1.3, 4.5, 2.4, 2.8, 1.3, 1.0, 1.0),
+      (4, 1, 'evgenija', 'Auto-generated evaluation', 3.0, 3.9, 1.7, 1.6, 1.0, 1.0, 1.0, 3.2, 3.8, 3.7, 3.8, 1.0, 1.3, 1.0),
+      (5, 1, 'angela', 'Auto-generated evaluation', 1.8, 3.3, 1.2, 3.7, 2.0, 1.0, 2.3, 3.3,  1.6, 3.0, 3.0,  1.0, 1.0, 1.0),
+      (6, 1, 'angela', 'Auto-generated evaluation', 1.3, 3.0, 1.0, 3.3, 1.0, 1.0, 3.6, 3.9, 3.5, 1.0, 1.4, 1.2, 1.0, 1.0),
+      (7, 1, 'evgenija', 'Auto-generated evaluation', 3.5, 2.1, 2.4, 1.4, 1.0, 1.0, 1.1, 3.3, 2.4, 1.4, 1.4, 1.0, 1.0, 1.0),
+      (8, 1, 'angela', 'Auto-generated evaluation',2.1, 3.1, 1.0, 3.9, 1.0, 1.0, 1.5, 1.6,  2.8, 3.2, 3.5,  1.1, 2.0, 1.0),
+      (1, 2, 'angela', 'Auto-generated evaluation', 4.3, 2.3, 3.3, 3.3,  1.0, 1.0, 4.4, 4.0, 2.2, 2.1, 2.2,1.0, 1.0, 1.0),
+      (2, 2, 'angela', 'Auto-generated evaluation', 2.6, 2.7, 2.2, 2.4, 1.0, 1.0, 1.8, 1.5, 3.0, 4.0, 4.0, 1.0, 1.0, 1.0),
+      (3, 2, 'evgenija', 'Auto-generated evaluation', 2.1, 2.3, 4.0, 1.3, 1.0, 1.0, 3.7, 1.6, 2.1, 2.5, 3.3, 1.0, 1.0, 1.0),
+      (4, 2, 'angela', 'Auto-generated evaluation', 1.5, 2.5, 1.5, 2.1, 1.0, 1.0, 3.7, 2.2, 2.5, 4.2, 4.3, 1.0, 1.0, 1.0),
+      (5, 2, 'evgenija', 'Auto-generated evaluation', 3.4, 3.0, 1.3, 2.8, 1.0, 1.0, 3.1, 3.2,3.5, 2.9, 3.0, 1.0, 1.0, 1.0),
+      (6, 2, 'evgenija', 'Auto-generated evaluation',1.8, 3.2, 1.1, 2.4, 1.0, 1.0, 1.6, 2.1, 3.6, 2.7, 3.0, 1.0, 1.0, 1.0),
+      (7, 2, 'angela', 'Auto-generated evaluation', 4.4, 3.0, 1.6, 4.3, 1.0, 1.0, 1.2, 4.4, 3.2, 2.0, 1.7, 1.0, 1.0, 1.0),
+      (8, 2, 'angela', 'Auto-generated evaluation',  3.7, 3.6, 1.7, 3.8, 1.0, 1.0, 2.5, 4.1, 3.7, 2.1, 1.2, 1.0, 1.0, 1.0),
+      (1, 3, 'angela', 'Auto-generated evaluation', 1.0, 1.0, 1.2, 1.0, 3.0, 1.0, 1.1, 2.0, 1.3, 1.2, 1.1, 3.0, 1.0, 3.0),
+      (2, 3, 'angela', 'Auto-generated evaluation', 3.0, 1.0, 1.2, 2.0, 5.0, 5.0, 1.1, 6.0, 1.3, 3.0, 1.1, 2.0, 2.0, 2.0),
+      (3, 3, 'angela', 'Auto-generated evaluation', 3.5, 4.0, 3.6, 2.2, 3.0, 2.0, 2.8, 1.9, 2.9, 1.7, 1.1, 4.0, 2.0, 1.0),
+      (4, 3, 'angela', 'Auto-generated evaluation',  3.0, 1.0, 2.2, 3.2, 2.0, 3.0, 1.8, 1.2, 1.8, 2.9, 4.0, 5.0, 3.0, 5.0),
+      (5, 3, 'angela', 'Auto-generated evaluation', 1.5, 2.5, 3.3, 2.6, 4, 2, 3.2, 2.6, 3.0, 3.6, 2.9, 1.0, 2.0, 4.0),
+      (6, 3, 'angela', 'Auto-generated evaluation', 2.6, 3.0, 2.8, 3.4, 1, 1, 2.8, 2.9, 1.9, 1.3, 2.7, 1.0, 1.0, 1.0),
+      (7, 3, 'angela', 'Auto-generated evaluation', 2.2, 3.4, 1.9, 2.6, 3, 2, 4.0, 2.8, 4.0, 1.1, 1.6, 1.0, 1.0, 5.0),
+      (8, 3, 'evgenija', 'Auto-generated evaluation', 3.6, 1.2, 2.2, 4.1, 1, 1, 1.9, 2.8, 1.9, 4.4, 2.7, 3.0, 2.0, 1.0),
+      (1, 4, 'evgenija', 'Auto-generated evaluation', 3.5, 4.2, 3.8, 2.9, 1, 1, 2.2, 3.3, 3.3, 3.1, 2.1, 1.0, 1.0, 1.0),
+      (2, 4, 'evgenija', 'Auto-generated evaluation', 2.5, 3.9, 2.7, 2.0, 1, 1, 2.1, 1.1, 4.2, 2.9, 3.8, 1.0, 1.0, 1.0),
+      (3, 4, 'evgenija', 'Auto-generated evaluation', 1.4, 1.1, 2.6, 1.1, 1, 1, 3.4, 3.4, 2.2, 3.7, 1.9, 1.0, 1.0, 1.0),
+      (4, 4, 'evgenija', 'Auto-generated evaluation', 1.6, 2.9, 2.0, 2.2, 1, 1, 3.2, 2.7, 3.0, 1.7, 2.9, 1.0, 1.0, 1.0),
+      (5, 4, 'evgenija', 'Auto-generated evaluation', 3.2, 1.4, 2.3, 4.1, 1, 1, 3.5, 4.2, 1.0, 1.7, 2.2, 1.0, 1.0, 1.0),
+      (6, 4, 'evgenija', 'Auto-generated evaluation', 3.2, 1.2, 1.2, 1.3, 1, 1, 3.3, 1.6, 2.7, 1.2, 2.9, 1.0, 1.0, 1.0),
+      (7, 4, 'evgenija', 'Auto-generated evaluation', 4.4, 3.4, 1.9, 3.7, 1, 1, 4.0, 2.1, 2.6, 4.0, 1.3, 1.0, 1.0, 1.0),
+      (8, 4, 'angela', 'Auto-generated evaluation', 4.3, 2.2, 3.4, 2.3, 1, 1, 1.5, 3.3, 4.3, 1.4, 2.0, 1.0, 1.0, 1.0),
+      (1, 5, 'angela', 'Auto-generated evaluation', 3.4, 1.3, 1.4, 1.9, 1, 1, 1.7, 4.4, 1.4, 1.2, 4.4, 1.0, 1.0, 1.0),
+      (2, 5, 'angela', 'Auto-generated evaluation', 3.4, 1.4, 1.9, 1.1, 1, 1, 4.3, 4.2, 2.4, 3.5, 2.4, 1.0, 1.0, 1.0),
+      (3, 5, 'angela', 'Auto-generated evaluation', 1.5, 1.0, 2.3, 3.9, 1, 1, 4.4, 3.7, 3.9, 3.0, 3.3, 1.0, 1.0, 1.0),
+      (4, 5, 'angela', 'Auto-generated evaluation',  3.2, 1.4, 4.2, 3.5, 1, 1, 3.3, 2.4, 2.9, 2.3, 3.2, 1.0, 1.0, 1.0),
+      (5, 5, 'angela', 'Auto-generated evaluation', 2.8, 1.3, 4.4, 2.0, 1, 1, 2.9, 2.7, 4.2, 4.1, 1.2, 1.0, 1.0, 1.0),
+      (6, 5, 'angela', 'Auto-generated evaluation', 3.4, 3.4, 4.3, 2.4, 1, 1, 3.8, 1.2, 4.1, 1.8, 2.9, 1.0, 1.0, 1.0),
+      (7, 5, 'angela', 'Auto-generated evaluation', 1.4, 3.1, 2.2, 3.9, 1, 1, 3.6, 2.8, 4.2, 3.6, 2.5, 1.0, 1.0, 1.0),
+      (8, 5, 'evgenija', 'Auto-generated evaluation', 2.5, 2.2, 2.3, 3.8, 1, 1, 1.2, 2.3, 1.5, 2.8, 3.5, 1.0, 1.0, 1.0),
+      (1, 6, 'evgenija', 'Auto-generated evaluation', 4.3, 1.3, 3.5, 1.8, 1, 1, 2.8, 3.5, 3.0, 4.1, 3.0, 1.0, 1.0, 1.0),
+      (2, 6, 'evgenija', 'Auto-generated evaluation', 3.4, 3.2, 3.5, 1.8, 1, 1, 1.8, 3.2, 3.1, 4.3, 4.1, 1.0, 1.0, 1.0),
+      (3, 6, 'evgenija', 'Auto-generated evaluation', 3.4, 4.3, 2.1, 2.9, 1, 1.2, 3.8, 3.0, 3.7, 3.2, 4.0, 1.0, 1.0, 1.0),
+      (4, 6, 'evgenija', 'Auto-generated evaluation', 2.8, 4.1, 3.0, 2.2, 1, 1, 2.1, 3.2, 4.5, 2.9, 3.1, 1.0, 1.0, 1.0),
+      (5, 6, 'evgenija', 'Auto-generated evaluation', 2.0, 4.1, 3.5, 3.1, 1, 1, 1.8, 2.7, 2.1, 1.9, 1.1, 1.0, 1.0, 1.0),
+      (6, 6, 'evgenija', 'Auto-generated evaluation',2.5, 1.9, 3.1, 3.6, 1, 1, 2.4, 3.8, 1.0, 3.5, 3.9, 1.0, 1.0, 1.0),
+      (7, 6, 'evgenija', 'Auto-generated evaluation',4.0, 3.7, 1.7, 2.7, 1, 1, 1.4, 4.2, 2.8, 4.3, 2.9, 1.0, 1.0, 1.0),
+      (8, 6, 'angela', 'Auto-generated evaluation', 2.6, 3.8, 3.7, 4.5, 2, 2, 4.0, 2.2, 3.9, 3.5, 1.2, 2.0, 1.0, 1.0),
+      (1, 7, 'angela', 'Auto-generated evaluation', 2.6, 1.8, 1.8, 3.5, 1, 1, 3.8, 3.2, 2.8, 1.9, 2.9, 3.0, 2.0, 3.0),
+      (2, 7, 'angela', 'Auto-generated evaluation', 1.3, 2.2, 2.1, 1.5, 1, 1, 3.0, 4.0, 1.6, 2.8, 3.9, 1.0, 1.0, 1.0),
+      (3, 7, 'angela', 'Auto-generated evaluation',1.4, 2.5, 2.4, 3.5, 2, 2, 3.7, 1.7, 1.5, 1.7, 2.6, 1.0, 1.0, 1.0),
+      (4, 7, 'angela', 'Auto-generated evaluation', 3.0, 2.3, 4.3, 1.3, 1, 3, 3.4, 1.2, 1.5, 2.6, 2.4, 1.0, 5.0, 2.0),
+      (5, 7, 'angela', 'Auto-generated evaluation', 2.6, 4.2, 3.8, 2.2, 3, 1, 3.7, 2.3, 2.5, 4.0, 1.1, 1.0, 3.0, 1.0),
+      (6, 7, 'angela', 'Auto-generated evaluation', 1.6, 4.0, 2.2, 3.1, 2, 3, 3.2, 3.5, 3.0, 1.6, 4.1, 1.0, 1.0, 1.0),
+      (7, 7, 'angela', 'Auto-generated evaluation', 1.7, 1.7, 3.6, 2.6, 1, 1, 3.5, 3.0, 1.4, 1.5, 1.2, 1.0, 1.0, 1.0),
+      (8, 7, 'evgenija', 'Auto-generated evaluation', 1.3, 2.6, 2.3, 3.5, 1, 1, 3.2, 3.4, 3.4, 1.5, 2.9, 1.0, 1.0, 1.0),
+      (1, 8, 'evgenija', 'Auto-generated evaluation',2.8, 3.5, 1.1, 1.8, 1, 1, 3.7, 4.4, 4.2, 3.3, 3.3, 1.0, 1.0, 1.0),
+      (2, 8, 'evgenija', 'Auto-generated evaluation', 4.0, 2.4, 1.2, 4.5, 2, 1, 4.4, 3.2, 2.4, 2.6, 3.1, 2.0, 1.0, 1.0),
+      (3, 8, 'evgenija', 'Auto-generated evaluation', 2.6, 2.0, 2.6, 1.8, 1, 1, 1.6, 2.1, 4.1, 2.8, 1.5, 1.0, 1.0, 1.0),
+      (4, 8, 'evgenija', 'Auto-generated evaluation', 2.5, 2.0, 3.8, 4.3, 1, 1, 2.9, 4.4, 4.4, 3.8, 4.4, 1.0, 1.0, 1.0),
+      (5, 8, 'evgenija', 'Auto-generated evaluation', 1.7, 4.4, 2.7, 1.7, 1, 1, 3.7, 3.5, 2.9, 2.9, 2.6, 1.0, 1.0, 1.0),
+      (6, 8, 'evgenija', 'Auto-generated evaluation',4.4, 4.2, 1.6, 3.8, 1, 1, 3.7, 2.7, 4.0, 1.4, 1.4, 1.0, 3.0, 1.0),
+      (7, 8, 'evgenija', 'Auto-generated evaluation',4.5, 2.4, 2.8, 2.6, 2, 1, 4.3, 3.3, 2.0, 3.5, 4.2, 1.0, 2.0, 4.0),
+      (8, 8, 'angela', 'Auto-generated evaluation', 3.0, 3.2, 3.8, 2.8, 2, 1, 3.2, 1.6, 1.9, 4.5, 3.5, 2.0, 1.0, 1.0);
 
-      (1, 2, 'evgenija', 'Concise and relevant', 4.6, 4.8, 4.9, 4.2, 0, 0, 4.7, 4.5, 4.8, 4.7, 4.6, 0, 0, 0),
-      (4, 2, 'angela', 'Lacks depth in special situations', 3.9, 3.7, 4.1, 3.8, 0, 1, 3.8, 4.0, 3.9, 3.7, 3.8, 0, 0, 1),
-      (5, 2, 'evgenija', 'Good treatment analysis', 4.5, 4.3, 4.4, 4.1, 0, 0, 4.6, 4.2, 4.5, 4.3, 4.4, 0, 0, 0),
 
-      (3, 3, 'angela', 'Strong neuroimaging insights', 4.7, 4.6, 4.5, 4.3, 0, 0, 4.8, 4.4, 4.7, 4.6, 4.5, 0, 0, 0),
-      (4, 3, 'evgenija', 'Outdated clinical references', 3.5, 3.8, 4.0, 3.2, 0, 0, 3.6, 2.8, 3.7, 3.5, 3.6, 0, 1, 0),
-      (5, 3, 'angela', 'Excellent diagnostic evaluation', 4.9, 4.8, 4.7, 4.6, 0, 0, 4.9, 4.7, 4.8, 4.9, 4.7, 0, 0, 0);

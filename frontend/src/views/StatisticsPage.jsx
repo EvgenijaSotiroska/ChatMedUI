@@ -7,7 +7,7 @@ import BoxPlotByMetric from "../components/charts/BoxPlotByMetric";
 import GroupedBarChart from "../components/charts/GroupedBarChart";
 import GroupedBarChartByMetricType2 from "../components/charts/GroupedBarChartByMetricType2";
 
-const EXCLUDED_KEYS = ["question_id", "model_name", "username", "comment"];
+const EXCLUDED_KEYS = ["question", "model", "user", "comment"];
 
 const StatisticsPage = () => {
     const [groupedMetric, setGroupedMetric] = useState("understanding");
