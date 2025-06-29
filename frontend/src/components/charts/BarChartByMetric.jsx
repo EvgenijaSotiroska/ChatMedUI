@@ -18,7 +18,7 @@ const BarChartByMetric = ({selectedMetric}) => {
     const modelMetricMap = {};
 
     evaluations.forEach(e => {
-        const model = e.model_name;
+        const model = e.model.model_name;
         const metric = e[selectedMetric]
 
         if(!modelMetricMap[model]){ //inicijalizaci
