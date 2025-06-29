@@ -20,7 +20,7 @@ const BoxPlotByMetric = ({selectedMetric}) => {
     const modelToValues = {};
 
     evaluations.forEach(e => {
-        const model = e.model_name;
+        const model = e.model.model_name;
         const value = e[selectedMetric];
         if (!modelToValues[model]) modelToValues[model] = [];
         if (typeof value === "number") modelToValues[model].push(value);
