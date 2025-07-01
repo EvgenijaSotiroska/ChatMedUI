@@ -55,23 +55,12 @@ const WorkspaceDashboard = () => {
                 <Card>
                     <h3>Workspace Overview</h3>
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <div className="number-border">8.2</div>
                         <ul style={{fontSize: '0.85rem', listStyleType: 'none', marginRight: '50px'}}>
-                            <li style={{marginBottom: '5px'}}><img
-                                src="https://i.pinimg.com/736x/5f/35/da/5f35dacf95fb235f068545c959898333.jpg"
-                                alt="Example" width="22"/> Time Constraints 9.0
+                            <li style={{marginBottom: '5px'}}>
+                                Number of models: 3
                             </li>
-                            <li style={{marginBottom: '5px'}}><img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfLGp6opYc2_QJTX7fNQEM0VNXqOfu06r79g&s"
-                                alt="Example" width="22"/> Difficulty: 7.8
-                            </li>
-                            <li style={{marginBottom: '5px'}}><img
-                                src="https://img.freepik.com/premium-vector/notebook-sign-vector-image-isolated-black-background-notebook-web-icon_872756-87.jpg"
-                                alt="Example" width="22"/> Specificity: 8.3
-                            </li>
-                            <li style={{marginBottom: '5px'}}><img
-                                src="https://img.freepik.com/premium-photo/handshake-black-background-symbol-cooperation-partnership_1308175-243433.jpg?w=360"
-                                alt="Example" width="22"/> Collaboration: 7.7
+                            <li style={{marginBottom: '5px'}}>
+                                Number of questions: 2
                             </li>
                         </ul>
                     </div>
