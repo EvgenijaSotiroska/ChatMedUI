@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./views/Home/HomePage";
 import LoginPage from "./views/Login/LoginPage";
 import RegisterPage from "./views/Register/RegisterPage";
-import InfoPage from "./views/InfoPage";
-import WorkspaceDetailsPage from "./views/WorkspaceDetailsPage";
-import TaskDetailsPage from "./views/TaskDetailsPage";
-import ProgressOverviewPage from "./views/ProgressOverviewPage";
-import StatisticsPage from "./views/StatisticsPage";
+import InfoPage from "./views/Info/InfoPage";
+import WorkspaceDetailsPage from "./views/WorkspaceDetails/WorkspaceDetailsPage";
+import TaskDetailsPage from "./views/TaskDetails/TaskDetailsPage";
+import ProgressOverviewPage from "./views/Progress/ProgressOverviewPage";
+import StatisticsPage from "./views/Statistics/StatisticsPage";
 
 function App() {
     return (

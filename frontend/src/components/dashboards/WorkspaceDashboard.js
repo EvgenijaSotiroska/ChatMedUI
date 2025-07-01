@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Card from './Card';
-import Button from './Button';
-import '../views/css/dashboard.css';
-import axiosInstance from "../axios/axios";
-import '../views/css/styles.css';
+import Card from '../ui/Card';
+import Button from '../ui/Button';
+import '../../views/css/dashboard.css';
+import axiosInstance from "../../axios/axios";
+import '../../views/css/styles.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 

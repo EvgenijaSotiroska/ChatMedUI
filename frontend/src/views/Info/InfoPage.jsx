@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../axios/axios";
-import NavBar from "../components/NavBar";
-import WorkspaceCard from "../components/WorkspaceCard";
+import axiosInstance from "../../axios/axios";
+import NavBar from "../../components/nav/NavBar";
+import WorkspaceCard from "../../components/dashboards/WorkspaceCard";
 
 const InfoPage = () => {
     const navigate = useNavigate();

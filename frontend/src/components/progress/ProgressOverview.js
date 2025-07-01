@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../views/css/dashboard.css";
-import axiosInstance from "../axios/axios";
+import "../../views/css/dashboard.css";
+import axiosInstance from "../../axios/axios";
 import { useNavigate } from "react-router-dom";
 
 const PROGRESS = [80, 60, 25, 90, 70, 30];

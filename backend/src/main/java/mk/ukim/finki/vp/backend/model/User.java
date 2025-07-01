@@ -1,8 +1,10 @@
 package mk.ukim.finki.vp.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,18 +14,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Data
 @Entity
-//@AllArgsConstructor
-//@NoArgsConstructor
 @Table(name="users")
 public class User implements UserDetails {
     @Id
+    @JsonProperty
     private String username;
     @JsonIgnore
     private String password;
+    @JsonProperty
     private String firstName;
+    @JsonProperty
     private String lastName;
 
     public User(String username, String password, String firstName, String lastName) {

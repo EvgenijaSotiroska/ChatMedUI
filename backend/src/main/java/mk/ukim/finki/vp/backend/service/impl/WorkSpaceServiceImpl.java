@@ -1,5 +1,6 @@
 package mk.ukim.finki.vp.backend.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import mk.ukim.finki.vp.backend.model.Task;
 import mk.ukim.finki.vp.backend.model.Workspace;
 import mk.ukim.finki.vp.backend.repository.WorkspaceRepository;
@@ -18,8 +19,9 @@ public class WorkSpaceServiceImpl implements WorkSpaceService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Workspace> findAll() {
-        return this.workspaceRepository.findAll();
+        return this.workspaceRepository.findAllWithAdmin();
     }
 
     @Override

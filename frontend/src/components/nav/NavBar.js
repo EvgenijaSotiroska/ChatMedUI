@@ -1,5 +1,5 @@
 import React from 'react';
-import '../views/css/styles.css'
+import '../../views/css/styles.css'
 import {
     Home,
     ClipboardList,

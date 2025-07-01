@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import axiosInstance from "../axios/axios";
-import Selector from "../components/statistics_components/Selector"
+import axiosInstance from "../../axios/axios";
+import Selector from "../../components/statistics/Selector"
 import {Box, Typography, Divider} from "@mui/material";
-import BarChartByMetric from "../components/charts/BarChartByMetric";
-import BoxPlotByMetric from "../components/charts/BoxPlotByMetric";
-import GroupedBarChart from "../components/charts/GroupedBarChart";
-import GroupedBarChartByMetricType2 from "../components/charts/GroupedBarChartByMetricType2";
+import BarChartByMetric from "../../components/charts/BarChartByMetric";
+import BoxPlotByMetric from "../../components/charts/BoxPlotByMetric";
+import GroupedBarChart from "../../components/charts/GroupedBarChart";
+import GroupedBarChartByMetricType2 from "../../components/charts/GroupedBarChartByMetricType2";
 
 const EXCLUDED_KEYS = ["question", "model", "user", "comment","id"];
 

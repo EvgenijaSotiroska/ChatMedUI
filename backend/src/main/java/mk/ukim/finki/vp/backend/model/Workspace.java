@@ -1,6 +1,7 @@
 package mk.ukim.finki.vp.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,14 @@ public class Workspace {
     @ManyToMany
     @JsonIgnore
     private List<Task> tasks;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "workspace_admin",
+            joinColumns = @JoinColumn(name = "workspace_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_username")
+    )
+    private User admin;
 
     @ManyToMany
     @JsonIgnore
@@ -63,5 +72,9 @@ public class Workspace {
 
     public List<Model> getModels() {
         return models;
+    }
+
+    public User getAdmin() {
+        return admin;
     }
 }

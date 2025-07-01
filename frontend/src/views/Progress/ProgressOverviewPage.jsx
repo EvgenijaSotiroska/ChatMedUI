@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import ProgressOverview from "../components/ProgressOverview";
-import './css/styles.css';
+import NavBar from "../../components/nav/NavBar";
+import ProgressOverview from "../../components/progress/ProgressOverview";
+import '../css/styles.css';
 
 const ProgressOverviewPage = () => (
     <div className="lay-out">
