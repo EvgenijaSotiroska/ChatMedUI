@@ -1,10 +1,10 @@
-#ChatMedUI
+# ChatMedUI
 
-###Description
+### Description
 ChatMedUI is a React-based frontend module primarily focused on providing a smooth and intuitive interface for evaluating machine learning models. 
 While the frontend handles the core user experience — including listing, viewing, and managing workspaces where models are evaluated — it is supported by a Spring Boot backend that manages server-side logic and data.
 
-###Getting started
+### Getting started
 Install Docker Desktop and make sure it is running before proceeding.
 
 Clone the repository:
