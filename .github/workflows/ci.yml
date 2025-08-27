@@ -1,4 +1,4 @@
-name: Spring App CI/CD
+name: ChatMedUI CI/CD
 
 on:
   push:
@@ -54,6 +54,6 @@ jobs:
     - name: Scan Docker image for vulnerabilities
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/chat-medUI:latest'
+        image-ref: '${{ secrets.DOCKERHUB_USERNAME }}/chat-med-ui:latest'
         format: 'table'
         exit-code: '0'
