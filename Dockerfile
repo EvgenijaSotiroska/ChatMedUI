@@ -1,23 +1,22 @@
 # Stage 1: Build frontend
-FROM node:20 AS frontend-build
+FROM node:20 AS frontend
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ .
 RUN npm run build
 
-# Stage 2: Build backend
-FROM maven:3.9.2-eclipse-temurin-21 AS backend-build
-WORKDIR /app/backend
-COPY backend/pom.xml ./
+# Stage 2: Build backend with Maven and include frontend
+FROM maven:3.9.9-eclipse-temurin-21 AS backend
+WORKDIR /app
+COPY backend/pom.xml .
 COPY backend/src ./src
-# Copy built frontend into backend resources
-COPY --from=frontend-build /app/frontend/build ./src/main/resources/static
+COPY --from=frontend /app/frontend/build ./src/main/resources/static
 RUN mvn clean package -DskipTests
 
-# Stage 3: Run application
+# Stage 3: Run
 FROM eclipse-temurin:21-jdk
 WORKDIR /app
-COPY --from=backend-build /app/backend/target/*.jar app.jar
-EXPOSE 8080
+COPY --from=backend /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
