@@ -7,7 +7,7 @@ COPY frontend/ .
 RUN npm run build
 
 # Stage 2: Build backend
-FROM maven:3.9.2-eclipse-temurin-17 AS backend-build
+FROM maven:3.9.2-eclipse-temurin-21 AS backend-build
 WORKDIR /app/backend
 COPY backend/pom.xml ./
 COPY backend/src ./src
@@ -16,7 +16,7 @@ COPY --from=frontend-build /app/frontend/build ./src/main/resources/static
 RUN mvn clean package -DskipTests
 
 # Stage 3: Run application
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 COPY --from=backend-build /app/backend/target/*.jar app.jar
 EXPOSE 8080
