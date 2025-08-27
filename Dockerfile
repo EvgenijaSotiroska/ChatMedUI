@@ -2,7 +2,11 @@ FROM openjdk:21-jdk-slim AS backend-build
 WORKDIR /app/backend
 COPY backend/pom.xml backend/pom.xml
 COPY backend/src backend/src
-RUN apt-get update && apt-get install -y maven && mvn clean package -DskipTests
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends maven=3.3.2 && \
+    rm -rf /var/lib/apt/lists/* && \
+    mvn clean package -DskipTests
+
 
 
 FROM node:18 AS frontend-build
