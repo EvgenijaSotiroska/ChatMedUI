@@ -1,27 +1,23 @@
-FROM openjdk:21-jdk-slim AS backend-build
-WORKDIR /app/backend
-COPY backend/pom.xml backend/pom.xml
-COPY backend/src backend/src
-RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
-RUN mvn clean package -DskipTests
-
-
-
-
-FROM node:18 AS frontend-build
+# Stage 1: Build frontend
+FROM node:20 AS frontend-build
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install
-COPY frontend/ ./
+COPY frontend/ .
 RUN npm run build
 
-FROM openjdk:21-jdk-slim
+# Stage 2: Build backend
+FROM maven:3.9.2-eclipse-temurin-17 AS backend-build
+WORKDIR /app/backend
+COPY backend/pom.xml ./
+COPY backend/src ./src
+# Copy built frontend into backend resources
+COPY --from=frontend-build /app/frontend/build ./src/main/resources/static
+RUN mvn clean package -DskipTests
+
+# Stage 3: Run application
+FROM eclipse-temurin:17-jdk
 WORKDIR /app
-
-COPY --from=backend-build /app/backend/target/*.jar ./app.jar
-
-COPY --from=frontend-build /app/frontend/build ./frontend
-
+COPY --from=backend-build /app/backend/target/*.jar app.jar
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
