@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  labels:
+    app: backend-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: backend-app
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 500
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+      - name: backend-pod
+        image: chatmedui-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8082
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      
+     
