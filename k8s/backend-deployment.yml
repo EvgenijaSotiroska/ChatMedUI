@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: backend-pod
-        image: chatmedui-backend:latest
+        image: evgenijasotiroska24/chatmedui2-backend:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8082
@@ -55,3 +55,4 @@ spec:
             cpu: "500m"
       
      
+
