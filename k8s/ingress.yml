@@ -3,13 +3,20 @@ kind: Ingress
 metadata:
   name: app-ingress
   annotations:
-     kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
 spec:
   ingressClassName: nginx
   rules:
-    - host: chat-med.local   
+    - host: chat-med.local
       http:
         paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 8082
           - path: /
             pathType: Prefix
             backend:
@@ -17,4 +24,3 @@ spec:
                 name: frontend-service
                 port:
                   number: 80
-          
