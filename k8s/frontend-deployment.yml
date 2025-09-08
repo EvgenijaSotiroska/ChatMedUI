@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: frontend-pod
-        image: chatmedui-frontend:latest
+        image: evgenijasotiroska24/chatmedui2-frontend:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
@@ -54,3 +54,4 @@ spec:
           initialDelaySeconds: 10
           periodSeconds: 5
   
+
