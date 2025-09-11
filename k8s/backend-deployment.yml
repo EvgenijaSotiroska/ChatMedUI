@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-app
+  namespace: chatmed
   labels:
     app: backend-app
 spec:
@@ -30,7 +31,10 @@ spec:
         - containerPort: 8082
         env:
         - name: SERVER_ADDRESS
-          value: "0.0.0.0"
+          valueFrom:
+            configMapKeyRef:
+              name: chatmedui-config
+              key: SERVER_ADDRESS
         - name: SPRING_DATASOURCE_URL
           valueFrom:
             secretKeyRef:
@@ -53,6 +57,14 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-      
-     
-
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+  namespace: chatmed
+spec:
+  minAvailable: 4
+  selector:
+    matchLabels:
+      app: backend-app
