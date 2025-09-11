@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-app
+  namespace: chatmed
   labels:
     app: frontend-app
 spec:
@@ -22,6 +23,25 @@ spec:
       labels:
         app: frontend-app
     spec:
+      initContainers:
+      - name: wait-for-backend
+        image: busybox:1.28
+        command: ['sh', '-c']
+        args:
+         - |
+           echo "Waiting for the backend service..."
+           until nc -z backend-service 8082; do
+             echo "Backend is not ready, waiting for 5 seconds..."
+             sleep 5
+           done
+           echo "Backend is ready!"
+        resources:
+          requests:
+            memory: "8Mi"
+            cpu: "1m"
+          limits:
+            memory: "16Mi"
+            cpu: "5m"
       containers:
       - name: frontend-pod
         image: evgenijasotiroska24/chatmedui2-frontend:latest
@@ -29,11 +49,11 @@ spec:
         ports:
         - containerPort: 3000
         env:
-        - name: REACT_APP_API_URL
+        - name: REACT_APP_API_BASE_URL
           valueFrom:
             configMapKeyRef:
               name: chatmedui-config
-              key: REACT_APP_API_URL
+              key: REACT_APP_API_BASE_URL
         resources:
           requests:
             memory: "50Mi"
@@ -53,5 +73,8 @@ spec:
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 5
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 3"]
   
-
