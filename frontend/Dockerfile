@@ -1,4 +1,7 @@
 FROM node:18-alpine
+LABEL maintainer="github.com/EvgenijaSotiroska" \
+      description="Frontend for Chat-Med App" \
+      version="1.0.0"
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
