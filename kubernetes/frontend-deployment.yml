@@ -44,7 +44,7 @@ spec:
               cpu: "5m"
       containers:
         - name: frontend-pod
-          image: evgenijasotiroska24/kiiiproekt-frontend:latest
+          image: evgenijasotiroska24/chatmedui2-frontend:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

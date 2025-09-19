@@ -70,7 +70,7 @@ spec:
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
-                  name: chatmedui-config
+                  name: postgres-secret
                   key: POSTGRES_DB
           volumeMounts:
             - name: postgres-storage
